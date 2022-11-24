@@ -1,3 +1,5 @@
+const sp = '@SP';
+
 export function push (segment, number) {
     if (segment.toUpperCase() === 'LOCAL') {
         segment = 'LCL'
@@ -9,36 +11,41 @@ export function push (segment, number) {
 
     if (segment.toUpperCase() === 'CONSTANT') {
         return [
+            // Get the constant in D
             '@' + number,
             'D=A',
-            '@SP',
+
+            // Assign the open stack cell to D
+            sp,
             'A=M',
             'M=D',
-            '@SP',
+
+            // Increment the stack pointer
+            sp,
             'M=M+1'
         ]
     }
 
     return [
-        // addr=segment+number,
+        // addr = segment + number,
         '@' + number,
         'D=A',
         '@' + segment.toUpperCase(),
-        'A=M',
-        'D=D+A',
+        'D=D+M',
         '@addr',
         'M=D',
 
-        // SP--,
-        '@SP',
-        'M=M-1',
-
-        // *addr=*SP
-        'A=M',
-        'D=M',
+        // *SP = *add
         '@addr',
         'A=M',
-        'M=D'
+        'D=M',
+        '@SP',
+        'A=M',
+        'M=D',
+
+        // SP++
+        '@SP',
+        'M=M+1'
     ]
 }
 
@@ -57,43 +64,53 @@ export function pop(segment, number) {
         )
     }
     return [
-        // @(segment + number),
-        '@' + number,
-        'D=A',
+        // addr = segment + number
         '@' + segment.toUpperCase(),
-        'A=M',
-        'A=D+A',
-
-        // *SP=*addr
         'D=M',
-        '@SP',
-        'A=M',
+        '@' + number,
+        'D=D+A',
+        '@addr',
         'M=D',
 
-        // SP++,
-        '@SP',
-        'M=M+1'
+        // SP--
+        sp,
+        'M=M-1',
+
+        // *addr = *SP
+        'A=M',
+        'D=M',
+        '@addr',
+        'A=M',
+        'M=D',
     ]
 }
 
 export function add() {
     return [
-        '@SP',
+        sp,
         'M=M-1',
         'A=M',
         'D=M',
-        'A=A-1',
-        'M=D+M'
+        sp,
+        'M=M-1',
+        'A=M',
+        'M=D+M',
+        sp,
+        'M=M+1'
     ]
 }
 
 export function sub() {
     return [
-        '@SP',
+        sp,
         'M=M-1',
         'A=M',
         'D=M',
-        'A=A-1',
-        'M=D-M'
+        sp,
+        'M=M-1',
+        'A=M',
+        'M=M-D',
+        sp,
+        'M=M+1'
     ]
 }
