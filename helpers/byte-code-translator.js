@@ -1,6 +1,6 @@
 import {add, sub, pop, push} from './snippet-generators.js';
 
-export function translateByteCodeToAssembly(byteCode) {
+export function translateByteCodeToAssembly(inputFileName, byteCode) {
     const assembly = [];
 
     assembly.push([
@@ -56,10 +56,10 @@ export function translateByteCodeToAssembly(byteCode) {
                 assembly.push(sub())
                 break;
             case 'push':
-                assembly.push(push(segment, number))
+                assembly.push(push(inputFileName, segment, number))
                 break;
             case 'pop':
-                assembly.push(pop(segment, number))
+                assembly.push(pop(inputFileName, segment, number))
                 break;
             default:
                 throw new Error(`Error at command ${byteCode.indexOf(line)}: "${line}"`)

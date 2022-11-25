@@ -1,5 +1,9 @@
-export function push (segment, number) {
+export function push (inputFileName, segment, number) {
     segment = cleanSegment(segment)
+
+    if (segment === 'STATIC') {
+        segment = inputFileName.split('.')[0] + "." + number
+    }
 
     if (segment === 'POINTER') {
         return pushPointer(number);
@@ -64,8 +68,12 @@ function pushConstant(number) {
     ]
 }
 
-export function pop(segment, number) {
+export function pop(inputFileName, segment, number) {
     segment = cleanSegment(segment)
+
+    if (segment === 'STATIC') {
+        segment = inputFileName.split('.')[0] + "." + number
+    }
 
     if (segment === 'POINTER') {
         return popPointer(number);

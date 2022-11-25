@@ -10,7 +10,7 @@ try {
 
     const byteCode = getByteCodeFromFileName(inputFileName);
 
-    const assembly = translateByteCodeToAssembly(byteCode);
+    const assembly = translateByteCodeToAssembly(inputFileName, byteCode);
 
     const outputFileName = getOutputNameFromInput(inputFileName);
 
