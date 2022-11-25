@@ -1,9 +1,9 @@
-import {getByteCodeFromFileName} from './helpers/byte-code-file-reader.js';
-import {translateByteCodeToAssembly} from './helpers/byte-code-translator.js';
+import {getByteCodeFromFileName} from './lib/byte-code-file-reader.js';
+import {translateByteCodeToAssembly} from './lib/byte-code-translator.js';
 import {
     getOutputNameFromInput,
     writeAssemblyToFile
-} from './helpers/assembly-code-writer.js';
+} from './lib/assembly-code-file-writer.js';
 
 try {
     const inputFileName = process.argv[2];
