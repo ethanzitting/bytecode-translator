@@ -1,20 +1,24 @@
-import {getByteCodeFromFileName} from './lib/byte-code-file-reader.js';
-import {translateByteCodeToAssembly} from './lib/byte-code-translator.js';
-import {
-    getOutputNameFromInput,
-    writeAssemblyToFile
-} from './lib/assembly-code-file-writer.js';
+import {ByteCodeReader} from './lib/ByteCodeReader';
+import {ByteCodeTranslator} from './lib/ByteCodeTranslator';
+import {AssemblyWriter} from './lib/AssemblyWriter';
 
-try {
-    const inputFileName = process.argv[2];
+async function main () {
+    try {
+        const providedName = process.argv[2];
 
-    const byteCode = getByteCodeFromFileName(inputFileName);
+        // Get an array of byte code strings from the designated file or directory.
+        const byteCode = (new ByteCodeReader(providedName))
+            .getByteCode();
 
-    const assembly = translateByteCodeToAssembly(inputFileName, byteCode);
+        // Translate the byte code to assembly.
+        const assembly = (new ByteCodeTranslator(providedName, byteCode))
+            .getAssembly();
 
-    const outputFileName = getOutputNameFromInput(inputFileName);
-
-    writeAssemblyToFile(assembly, outputFileName)
-} catch (err) {
-    console.error(err)
+        // Write the assembly to a file.
+        (new AssemblyWriter(providedName, assembly)).writeToFile();
+    } catch (err) {
+        console.error(err)
+    }
 }
+
+main();

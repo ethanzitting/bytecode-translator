@@ -17,5 +17,8 @@
     "url": "https://github.com/ethanzitting/bytecode-translator/issues"
   },
   "type": "module",
-  "homepage": "https://github.com/ethanzitting/bytecode-translator#readme"
+  "homepage": "https://github.com/ethanzitting/bytecode-translator#readme",
+  "dependencies": {
+    "uniqid": "^5.4.0"
+  }
 }
