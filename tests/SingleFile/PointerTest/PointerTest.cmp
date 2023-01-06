@@ -1,0 +1,216 @@
+// PointerTest.asm
+    // Initialize SP to 256
+    @256                       // 0
+    D=A                        // 1
+    @SP                        // 2
+    M=D                        // 3
+    // Initialize ARG to 400
+    @400                       // 4
+    D=A                        // 5
+    @ARG                       // 6
+    M=D                        // 7
+    // Initialize THIS to 3000
+    @3000                      // 8
+    D=A                        // 9
+    @THIS                      // 10
+    M=D                        // 11
+    // Initialize THAT to 3010
+    @3010                      // 12
+    D=A                        // 13
+    @THAT                      // 14
+    M=D                        // 15
+    // Initialize TEMP to 5
+    @5                         // 16
+    D=A                        // 17
+    @TEMP                      // 18
+    M=D                        // 19
+    @true                      // 20
+    M=0                        // 21
+    M=M-1                      // 22
+    @false                     // 23
+    M=0                        // 24
+
+
+    // push constant 3030
+    @3030                      // 25
+    D=A                        // 26
+    @SP                        // 27
+    A=M                        // 28
+    M=D                        // 29
+    @SP                        // 30
+    M=M+1                      // 31
+
+
+    // pop pointer 0
+    @SP                        // 32
+    M=M-1                      // 33
+    @SP                        // 34
+    A=M                        // 35
+    D=M                        // 36
+    @THIS                      // 37
+    M=D                        // 38
+
+
+    // push constant 3040
+    @3040                      // 39
+    D=A                        // 40
+    @SP                        // 41
+    A=M                        // 42
+    M=D                        // 43
+    @SP                        // 44
+    M=M+1                      // 45
+
+
+    // pop pointer 1
+    @SP                        // 46
+    M=M-1                      // 47
+    @SP                        // 48
+    A=M                        // 49
+    D=M                        // 50
+    @THAT                      // 51
+    M=D                        // 52
+
+
+    // push constant 32
+    @32                        // 53
+    D=A                        // 54
+    @SP                        // 55
+    A=M                        // 56
+    M=D                        // 57
+    @SP                        // 58
+    M=M+1                      // 59
+
+
+    // pop this 2
+    @THIS                      // 60
+    D=M                        // 61
+    @2                         // 62
+    D=D+A                      // 63
+    @addr                      // 64
+    M=D                        // 65
+    @SP                        // 66
+    M=M-1                      // 67
+    A=M                        // 68
+    D=M                        // 69
+    @addr                      // 70
+    A=M                        // 71
+    M=D                        // 72
+
+
+    // push constant 46
+    @46                        // 73
+    D=A                        // 74
+    @SP                        // 75
+    A=M                        // 76
+    M=D                        // 77
+    @SP                        // 78
+    M=M+1                      // 79
+
+
+    // pop that 6
+    @THAT                      // 80
+    D=M                        // 81
+    @6                         // 82
+    D=D+A                      // 83
+    @addr                      // 84
+    M=D                        // 85
+    @SP                        // 86
+    M=M-1                      // 87
+    A=M                        // 88
+    D=M                        // 89
+    @addr                      // 90
+    A=M                        // 91
+    M=D                        // 92
+
+
+    // push pointer 0
+    @THIS                      // 93
+    D=M                        // 94
+    @SP                        // 95
+    A=M                        // 96
+    M=D                        // 97
+    @SP                        // 98
+    M=M+1                      // 99
+
+
+    // push pointer 1
+    @THAT                      // 100
+    D=M                        // 101
+    @SP                        // 102
+    A=M                        // 103
+    M=D                        // 104
+    @SP                        // 105
+    M=M+1                      // 106
+
+
+    // add
+    @SP                        // 107
+    M=M-1                      // 108
+    A=M                        // 109
+    D=M                        // 110
+    @SP                        // 111
+    M=M-1                      // 112
+    A=M                        // 113
+    M=D+M                      // 114
+    @SP                        // 115
+    M=M+1                      // 116
+
+
+    // push this 2
+    @2                         // 117
+    D=A                        // 118
+    @THIS                      // 119
+    D=D+M                      // 120
+    @addr                      // 121
+    M=D                        // 122
+    @addr                      // 123
+    A=M                        // 124
+    D=M                        // 125
+    @SP                        // 126
+    A=M                        // 127
+    M=D                        // 128
+    @SP                        // 129
+    M=M+1                      // 130
+
+
+    // sub
+    @SP                        // 131
+    M=M-1                      // 132
+    A=M                        // 133
+    D=M                        // 134
+    @SP                        // 135
+    M=M-1                      // 136
+    A=M                        // 137
+    M=M-D                      // 138
+    @SP                        // 139
+    M=M+1                      // 140
+
+
+    // push that 6
+    @6                         // 141
+    D=A                        // 142
+    @THAT                      // 143
+    D=D+M                      // 144
+    @addr                      // 145
+    M=D                        // 146
+    @addr                      // 147
+    A=M                        // 148
+    D=M                        // 149
+    @SP                        // 150
+    A=M                        // 151
+    M=D                        // 152
+    @SP                        // 153
+    M=M+1                      // 154
+
+
+    // add
+    @SP                        // 155
+    M=M-1                      // 156
+    A=M                        // 157
+    D=M                        // 158
+    @SP                        // 159
+    M=M-1                      // 160
+    A=M                        // 161
+    M=D+M                      // 162
+    @SP                        // 163
+    M=M+1                      // 164

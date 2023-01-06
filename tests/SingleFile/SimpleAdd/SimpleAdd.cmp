@@ -1,0 +1,64 @@
+// SimpleAdd.asm
+    // Initialize SP to 256
+    @256                       // 0
+    D=A                        // 1
+    @SP                        // 2
+    M=D                        // 3
+    // Initialize ARG to 400
+    @400                       // 4
+    D=A                        // 5
+    @ARG                       // 6
+    M=D                        // 7
+    // Initialize THIS to 3000
+    @3000                      // 8
+    D=A                        // 9
+    @THIS                      // 10
+    M=D                        // 11
+    // Initialize THAT to 3010
+    @3010                      // 12
+    D=A                        // 13
+    @THAT                      // 14
+    M=D                        // 15
+    // Initialize TEMP to 5
+    @5                         // 16
+    D=A                        // 17
+    @TEMP                      // 18
+    M=D                        // 19
+    @true                      // 20
+    M=0                        // 21
+    M=M-1                      // 22
+    @false                     // 23
+    M=0                        // 24
+
+
+    // push constant 7
+    @7                         // 25
+    D=A                        // 26
+    @SP                        // 27
+    A=M                        // 28
+    M=D                        // 29
+    @SP                        // 30
+    M=M+1                      // 31
+
+
+    // push constant 8
+    @8                         // 32
+    D=A                        // 33
+    @SP                        // 34
+    A=M                        // 35
+    M=D                        // 36
+    @SP                        // 37
+    M=M+1                      // 38
+
+
+    // add
+    @SP                        // 39
+    M=M-1                      // 40
+    A=M                        // 41
+    D=M                        // 42
+    @SP                        // 43
+    M=M-1                      // 44
+    A=M                        // 45
+    M=D+M                      // 46
+    @SP                        // 47
+    M=M+1                      // 48

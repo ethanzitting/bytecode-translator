@@ -2,7 +2,7 @@
   "name": "vm-emulator",
   "version": "1.0.0",
   "description": "",
-  "main": "VMTranslator.js",
+  "main": "RunTranslate.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
